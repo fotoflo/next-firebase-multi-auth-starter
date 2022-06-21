@@ -1,5 +1,5 @@
 import type { OAuthConfig, OAuthUserConfig } from "next-auth/providers";
-
+import { GoogleProfile } from "next-auth/providers/google";
 export interface Google extends Record<string, any> {
   aud: string;
   azp: string;
