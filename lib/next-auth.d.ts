@@ -1,15 +1,5 @@
 import NextAuth, { DefaultSession } from "next-auth";
 
-export type Todo = {
-  checked: false;
-  label: string;
-};
-
-export enum TodoFilter {
-  all,
-  active,
-  completed,
-}
 declare module "next-auth" {
   /**
    * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
