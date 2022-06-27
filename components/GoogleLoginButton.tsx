@@ -4,10 +4,17 @@ import { Button } from "react-bootstrap";
 import { signIn } from "next-auth/react";
 import styled from "styled-components";
 
-const GoogleLoginButton: React.FC = () => {
+type props = {
+  text: string;
+};
+
+const GoogleLoginButton: React.FC = ({ text }: props) => {
+  if (!text) {
+    text = "Login With Google";
+  }
   return (
     <GoogleButton onClick={() => signIn("google")}>
-      <FaGoogle /> Login with Google
+      <FaGoogle /> {text}
     </GoogleButton>
   );
 };

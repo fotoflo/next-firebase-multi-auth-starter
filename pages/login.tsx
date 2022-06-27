@@ -5,10 +5,12 @@ import { useRouter } from "next/router";
 import GoogleLoginButton from "components/GoogleLoginButton";
 import { useEffect } from "react";
 import { Container } from "react-bootstrap";
+import NavBar from "components/NavBar";
 
 const LoginPage: NextPage<{}> = () => {
   return (
     <Container>
+      <NavBar />
       Login:
       <GoogleLoginButton />
     </Container>
