@@ -21,7 +21,6 @@ import User from "components/User";
 import { getTodoRefs } from "lib/Todo/todo.controller";
 import TodoFooter from "components/TodoFooter";
 import TodoLayout from "components/TodoItem";
-import Loading from "components/Loading";
 
 const Home: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
   data: session,
