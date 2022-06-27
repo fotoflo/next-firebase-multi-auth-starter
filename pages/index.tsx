@@ -20,6 +20,8 @@ import { useRouter } from "next/router";
 import User from "components/User";
 import GoogleLoginButton from "components/GoogleLoginButton";
 import GithubLoginButton from "components/GithubLoginButton";
+import SignOutButton from "components/SignOutButton";
+import Avatar from "components/Avatar";
 
 const Home: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
   data: session,
@@ -53,7 +55,8 @@ const Home: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
   return (
     <>
       {/* <Loading block={loading} /> */}
-      <User session={session} />
+      <Avatar src={session?.user?.image} />
+      <SignOutButton session={session} />
       <section>
         <GithubLoginButton />
         <GoogleLoginButton />
