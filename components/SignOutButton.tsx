@@ -1,19 +1,17 @@
-import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
-import { PropsWithoutRef, SyntheticEvent } from "react";
+import { Button } from "react-bootstrap";
+import { FaSignOutAlt } from "react-icons/fa";
 
-type Props = {};
-
-const SignOutButton = ({ session }: PropsWithoutRef<{ session: Session }>) => {
-  function signOutHandler(ev: SyntheticEvent) {
-    ev.preventDefault();
-    signOut();
-  }
-
+const SignOutButton = () => {
   return (
-    <a href={`/api/auth/signout`} onClick={signOutHandler}>
+    <Button
+      onClick={() => {
+        signOut();
+      }}
+    >
+      <FaSignOutAlt />
       Sign out
-    </a>
+    </Button>
   );
 };
 

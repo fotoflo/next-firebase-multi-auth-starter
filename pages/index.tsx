@@ -11,13 +11,11 @@ import {
 } from "lib/firebase-web";
 import type { GetServerSideProps, NextPage } from "next";
 import { Session } from "next-auth";
-import { getSession, signIn } from "next-auth/react";
-import { KeyboardEvent, SyntheticEvent, useEffect, useState } from "react";
+import { getSession } from "next-auth/react";
+import { useEffect } from "react";
 import Footer from "components/Footer";
-import { Todo, TodoFilter } from "lib/types";
 import { useMemo } from "react";
 import { useRouter } from "next/router";
-import User from "components/User";
 import GoogleLoginButton from "components/GoogleLoginButton";
 import GithubLoginButton from "components/GithubLoginButton";
 import SignOutButton from "components/SignOutButton";
@@ -25,7 +23,6 @@ import Avatar from "components/Avatar";
 
 const Home: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
   data: session,
-  todos,
 }) => {
   const router = useRouter();
   // const [loading, setLoading] = useState(!!session);
@@ -33,8 +30,6 @@ const Home: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
   const email = useMemo(() => session?.user?.email ?? "", [session]);
 
   useEffect(() => {
-    if (!session) return; // FIXME: load session;
-
     (async () => {
       const userCollectionRef = getUserCollection(email, "store");
       await signInFirebase(); // loading;
@@ -80,6 +75,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // const todoRefs = session
   //   ? await getTodoRefs((session?.user?.email as string) ?? "")
   //   : [];
+
+  if (!session) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+    };
+  }
 
   return {
     props: {
