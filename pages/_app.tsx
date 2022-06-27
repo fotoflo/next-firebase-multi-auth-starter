@@ -3,9 +3,6 @@ import Head from "next/head";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import "todomvc-app-css/index.css";
-import "todomvc-common/base.css";
-
 export default function MyApp({
   Component,
   pageProps: { session, ...pageProps },
