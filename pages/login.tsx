@@ -4,13 +4,14 @@ import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import GoogleLoginButton from "components/GoogleLoginButton";
 import { useEffect } from "react";
+import { Container } from "react-bootstrap";
 
 const LoginPage: NextPage<{}> = () => {
   return (
-    <>
+    <Container>
       Login:
       <GoogleLoginButton />
-    </>
+    </Container>
   );
 };
 

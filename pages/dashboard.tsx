@@ -20,6 +20,7 @@ import GoogleLoginButton from "components/GoogleLoginButton";
 import GithubLoginButton from "components/GithubLoginButton";
 import SignOutButton from "components/SignOutButton";
 import Avatar from "components/Avatar";
+import { Container } from "react-bootstrap";
 
 const Dashboard: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
   data: session,
@@ -30,7 +31,7 @@ const Dashboard: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
   const email = useMemo(() => session?.user?.email ?? "", [session]);
 
   return (
-    <>
+    <Container>
       {/* <Loading block={loading} /> */}
       <Avatar src={session?.user?.image} />
       <SignOutButton session={session} />
@@ -45,7 +46,7 @@ const Dashboard: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
         )}
       </section>
       <Footer />
-    </>
+    </Container>
   );
 };
 
