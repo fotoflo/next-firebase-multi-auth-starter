@@ -2,14 +2,16 @@ import type { GetServerSideProps, NextPage } from "next";
 import { Session } from "next-auth";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const Home: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
   data: session,
 }) => {
   const router = useRouter();
   // const [loading, setLoading] = useState(!!session);
-
-  router.push("/dashboard");
+  useEffect(() => {
+    router.push("/dashboard");
+  });
 };
 
 export default Home;
