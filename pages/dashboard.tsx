@@ -21,6 +21,7 @@ import GithubLoginButton from "components/GithubLoginButton";
 import SignOutButton from "components/SignOutButton";
 import Avatar from "components/Avatar";
 import { Container } from "react-bootstrap";
+import NavBar from "components/NavBar";
 
 const Dashboard: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
   data: session,
@@ -29,12 +30,12 @@ const Dashboard: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
   // const [loading, setLoading] = useState(!!session);
 
   const email = useMemo(() => session?.user?.email ?? "", [session]);
-
+  console.log("email ", email);
   return (
     <Container>
       {/* <Loading block={loading} /> */}
-      <Avatar src={session?.user?.image} />
-      <SignOutButton session={session} />
+
+      <NavBar session={session} />
       <section>
         <GithubLoginButton />
         <GoogleLoginButton />
