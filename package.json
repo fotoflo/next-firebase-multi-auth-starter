@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "playwright": "npx playwright test",
-    "playwright-headed": "npx playwright test --headed"
-
+    "playwright-headed": "npx playwright test --headed",
+    "playwright-codegen": "npx playwright codegen localhost:3000"
   },
   "dependencies": {
     "bootstrap": "^5.1.3",
