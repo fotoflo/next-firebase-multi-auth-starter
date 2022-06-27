@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "playwright": "npx playwright test",
+    "playwright-headed": "npx playwright test --headed"
+
   },
   "dependencies": {
     "bootstrap": "^5.1.3",
