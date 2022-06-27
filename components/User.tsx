@@ -2,6 +2,8 @@ import { Session } from "next-auth";
 import { signIn, signOut } from "next-auth/react";
 import { PropsWithoutRef, SyntheticEvent } from "react";
 
+import Avatar from "./Avatar";
+
 export default function User({
   session,
 }: PropsWithoutRef<{ session: Session }>) {
@@ -18,6 +20,7 @@ export default function User({
   return session ? (
     <div>
       <span>
+        <Avatar image={session?.user?.image} />
         <small>Signed in as</small>
         <br />
         <strong>{session?.user?.email ?? ""}</strong>
