@@ -38,7 +38,7 @@ const Dashboard: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
       <NavBar session={session} />
       <section>
         <GithubLoginButton />
-        <GoogleLoginButton />
+        <GoogleLoginButton prompt="Login with Gmail" provider="gmail" />
         {session?.user && (
           <>
             <header className="header"></header>
