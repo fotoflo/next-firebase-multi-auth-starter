@@ -1,12 +1,12 @@
 import React from "react";
 
-import { Session } from "next-auth";
-import { Col, Row, Nav } from "react-bootstrap";
+import { Session } from "../lib/types";
+import { Col, Nav } from "react-bootstrap";
 import Avatar from "./Avatar";
 import SignOutButton from "./SignOutButton";
 import GoogleLoginButton from "./GoogleLoginButton";
 
-function NavBar({ session }) {
+function NavBar({ session }: { session: Session }) {
   return (
     <Nav>
       <Col md={1}>
@@ -18,7 +18,7 @@ function NavBar({ session }) {
       </Col>
       <Col md={1}>
         {session && <Avatar src={session?.user?.image} />}
-        {!session && <GoogleLoginButton text="Login" />}
+        {!session && <GoogleLoginButton prompt="Login" />}
       </Col>
     </Nav>
   );

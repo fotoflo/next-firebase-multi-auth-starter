@@ -3,7 +3,7 @@ import { signOut } from "next-auth/react";
 import { Button } from "react-bootstrap";
 import { FaSignOutAlt } from "react-icons/fa";
 
-const SignOutButton: JSX.Element = () => {
+const SignOutButton: React.FC = () => {
   return (
     <Button
       variant="secondary"
@@ -16,4 +16,5 @@ const SignOutButton: JSX.Element = () => {
     </Button>
   );
 };
+
 export default SignOutButton;

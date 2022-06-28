@@ -5,16 +5,16 @@ import { signIn } from "next-auth/react";
 import styled from "styled-components";
 
 type props = {
-  text: string;
+  prompt: string;
 };
 
-const GoogleLoginButton: React.FC = ({ text }: props) => {
-  if (!text) {
-    text = "Login With Google";
+const GoogleLoginButton: React.FC = ({ prompt }: props) => {
+  if (!prompt) {
+    prompt = "Login With Google";
   }
   return (
     <GoogleButton onClick={() => signIn("google")}>
-      <FaGoogle /> {text}
+      <FaGoogle /> {prompt}
     </GoogleButton>
   );
 };

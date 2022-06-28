@@ -31,6 +31,8 @@ test("Login", async ({ page }) => {
     page.waitForNavigation(/*{ url: 'http://localhost:3000/dashboard' }*/),
     page.locator('button:has-text("Berikutnya")').click(),
   ]);
+
   // Click text=CloudPoacher!
   await page.locator("text=CloudPoacher!").click();
+  await page.locator('img[alt="user avatar"]').click();
 });
