@@ -3,9 +3,9 @@ import admin, { ServiceAccount } from "firebase-admin";
 import { getFirestore } from "firebase-admin/firestore";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
-import { Session } from "next-auth";
-import { asyncMap, findMany } from "adapters/utils";
-import FirebaseAdapter from "adapters/firebase-adapter";
+import { Session } from "next-auth-custom/types";
+import { asyncMap, findMany } from "next-auth-custom/utils";
+import FirebaseAdapter from "next-auth-custom/firebase-adapter";
 
 // https://github.com/vercel/next.js/issues/1999#issuecomment-302244429
 if (!admin.apps.length) {
