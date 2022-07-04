@@ -1,6 +1,16 @@
 # Firebase adepter auth process with custom token example in Next Auth
 
-Example of a firebase adapter that works with firebase authentication. A firebase is a database that has rules functionality for use by both servers and clients. If use firebase on a client, if rule is not set, all data accessible to the client is accessible to anyone who can read the code. When storing user, account, and session data in the next-adapter in the firebase, if rule is not set, all data will be public. This example uses the method of sign in using customToken to protect the data in the firebase at the frontend. After sign in through next-auth's provider, allow api endpoint that issues customToken of the firebase service on the server. When working with the firebase database at the frontend, if the client is not currently sign in as customToken, the user receives a token from the customToken api endpoint and then sign in and proceeds with the database operation. This example was created as a fireestore target, but can also use the same method for the firebase realtime database if necessary.
+Example of a firebase adapter that works with firebase authentication. 
+
+A firebase is a database that has rules functionality for use by both servers and clients. If use firebase on a client, if rule is not set, all data accessible to the client is accessible to anyone who can read the code. When storing user, account, and session data in the next-adapter in the firebase, if rule is not set, all data will be public. 
+
+This example uses the method of sign in using customToken to protect the data in the firebase at the frontend.
+
+ After sign in through next-auth's provider, allow api endpoint that issues customToken of the firebase service on the server. 
+ 
+ When working with the firebase database at the frontend, if the client is not currently sign in as customToken, the user receives a token from the customToken api endpoint and then sign in and proceeds with the database operation. 
+ 
+ This example was created as a fireestore target, but can also use the same method for the firebase realtime database if necessary.
 
 # precommit hooks
 $ ln -s ./e2e/pre-commit /.git/hooks/pre-commit

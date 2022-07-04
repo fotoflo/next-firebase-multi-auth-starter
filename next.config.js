@@ -12,6 +12,9 @@ const nextConfig = {
   },
   clientSide: typeof window !== "undefined",
   serverSide: typeof window === "undefined",
+  webConfig: {
+    env: process.env.NODE_ENV,
+  },
 };
 
 if (nextConfig.clientSide) {

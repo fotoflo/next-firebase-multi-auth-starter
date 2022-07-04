@@ -1,3 +1,5 @@
+// https://github.com/lowfront/next-auth-firestore-adapter-example
+
 import { Firestore } from "firebase-admin/firestore";
 import {
   Adapter,
@@ -23,18 +25,22 @@ export default function FirebaseAdapter(
     .collection(adapterCollectionName)
     .doc("store")
     .collection("user");
+
   const accountCollectionRef = db
     .collection(adapterCollectionName)
     .doc("store")
     .collection("account");
+
   const sessionCollectionRef = db
     .collection(adapterCollectionName)
     .doc("store")
     .collection("session");
+
   const verificationTokenCollectionRef = db
     .collection(adapterCollectionName)
     .doc("store")
     .collection("verificationToken");
+
   const customTokenCollectionRef = db
     .collection(adapterCollectionName)
     .doc("store")

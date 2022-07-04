@@ -15,7 +15,7 @@ export const DebugButton = (props) => {
 
   return (
     <>
-      {webConfig.ENV === "dev" && (
+      {webConfig.env === "dev" && (
         <Button onClick={() => debug()}>&nbsp; Debug</Button>
       )}
     </>
@@ -23,10 +23,6 @@ export const DebugButton = (props) => {
 };
 
 export const PrettyPrintJson = ({ data }) => {
-  // (destructured) data could be a prop for example
-
-  if (webConfig.env !== "dev") return;
-
   return (
     <Root>
       <Pre>{JSON.stringify(data, null, 2)}</Pre>

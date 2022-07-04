@@ -10,21 +10,22 @@ import {
   signInFirebase,
 } from "lib/firebase-web";
 import type { GetServerSideProps, NextPage } from "next";
+
 import { Session } from "next-auth";
-import { getSession } from "next-auth/react";
-import { useEffect } from "react";
-import Footer from "components/Footer";
-import { useMemo } from "react";
+import { ServersideSessionHandler } from "lib/middleware";
+
 import { useRouter } from "next/router";
+import { useEffect, useMemo } from "react";
+
+import Footer from "components/Footer";
+import { PrettyPrintJson } from "components/utilComponents";
 import GoogleLoginButton from "components/GoogleLoginButton";
 import GithubLoginButton from "components/GithubLoginButton";
-import SignOutButton from "components/SignOutButton";
-import Avatar from "components/Avatar";
-import { Container } from "react-bootstrap";
+
 import NavBar from "components/NavBar";
-import { ServersideSessionHandler } from "lib/middleware";
-import { PrettyPrintJson } from "components/utilComponents";
-import nextConfig from "next.config";
+import TestFirebase from "components/TestFirebase";
+
+import { Container } from "react-bootstrap";
 
 const Dashboard: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
   data: session,
@@ -33,6 +34,16 @@ const Dashboard: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
   // const [loading, setLoading] = useState(!!session);
 
   const email = useMemo(() => session?.user?.email ?? "", [session]);
+
+  useEffect(() => {
+    if (!session) return; // FIXME: load session;
+
+    (async () => {
+      const userCollectionRef = getUserCollection(email, "store");
+      await signInFirebase(); // loading;
+    })();
+  });
+
   return (
     <Container>
       {/* <Loading block={loading} /> */}
@@ -46,7 +57,8 @@ const Dashboard: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
             <header className="header"></header>
             <PrettyPrintJson data={session} />
 
-            <PrettyPrintJson data={nextConfig} />
+            <TestFirebase email={email} />
+
             <section className="main"></section>
           </>
         )}
