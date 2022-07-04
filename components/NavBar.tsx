@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 import { Session } from "../lib/types";
 import { Col, Nav } from "react-bootstrap";
@@ -17,7 +18,13 @@ function NavBar({ session }: { session: Session }) {
         {session && <SignOutButton />}
       </Col>
       <Col md={1}>
-        {session && <Avatar src={session?.user?.image} />}
+        {session && (
+          <Link href="/settings" passHref>
+            <a>
+              <Avatar src={session?.user?.image} />
+            </a>
+          </Link>
+        )}
         {!session && <GoogleLoginButton prompt="Login" />}
       </Col>
     </Nav>

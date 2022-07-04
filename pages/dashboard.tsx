@@ -23,6 +23,8 @@ import Avatar from "components/Avatar";
 import { Container } from "react-bootstrap";
 import NavBar from "components/NavBar";
 import { ServersideSessionHandler } from "lib/middleware";
+import { PrettyPrintJson } from "components/utilComponents";
+import nextConfig from "next.config";
 
 const Dashboard: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
   data: session,
@@ -31,7 +33,6 @@ const Dashboard: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
   // const [loading, setLoading] = useState(!!session);
 
   const email = useMemo(() => session?.user?.email ?? "", [session]);
-  console.log("email ", email);
   return (
     <Container>
       {/* <Loading block={loading} /> */}
@@ -43,6 +44,9 @@ const Dashboard: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
         {session?.user && (
           <>
             <header className="header"></header>
+            <PrettyPrintJson data={session} />
+
+            <PrettyPrintJson data={nextConfig} />
             <section className="main"></section>
           </>
         )}

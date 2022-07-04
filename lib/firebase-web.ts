@@ -17,6 +17,8 @@ import {
   QueryDocumentSnapshot,
   DocumentReference,
   WithFieldValue,
+  serverTimestamp,
+  deleteField,
 } from "firebase/firestore";
 import { sleep } from "./utils";
 
@@ -38,11 +40,15 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
+
 export const analytics = (() => {
   if (typeof window !== "undefined") return getAnalytics(app); // https://stackoverflow.com/a/69457158/16962686
   return null;
 })();
 export const db = getFirestore(app);
+
+export const FirebaseTimestamp = serverTimestamp;
+export const DeleteField = deleteField;
 
 export async function signInFirebase() {
   const token = await fetch("/api/auth/token").then((res) => res.text());

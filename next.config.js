@@ -1,3 +1,5 @@
+const { default: next } = require("next");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -8,6 +10,14 @@ const nextConfig = {
     // Enables the styled-components SWC transform
     styledComponents: true,
   },
+  clientSide: typeof window !== "undefined",
+  serverSide: typeof window === "undefined",
 };
+
+if (nextConfig.clientSide) {
+  nextConfig.webConfig = {
+    env: window.location.host.match("localhost") ? "dev" : "prod",
+  };
+}
 
 module.exports = nextConfig;
