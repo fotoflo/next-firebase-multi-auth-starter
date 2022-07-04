@@ -22,6 +22,7 @@ import SignOutButton from "components/SignOutButton";
 import Avatar from "components/Avatar";
 import { Container } from "react-bootstrap";
 import NavBar from "components/NavBar";
+import { ServersideSessionHandler } from "lib/middleware";
 
 const Dashboard: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
   data: session,
@@ -55,23 +56,5 @@ export default Dashboard;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   // It's a lot of time every page.
-  const session = await getSession(context);
-  // const todoRefs = session
-  //   ? await getTodoRefs((session?.user?.email as string) ?? "")
-  //   : [];
-
-  if (!session) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/login",
-      },
-    };
-  }
-
-  return {
-    props: {
-      data: session,
-    },
-  };
+  return ServersideSessionHandler(context);
 };
