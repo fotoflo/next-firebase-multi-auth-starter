@@ -15,7 +15,7 @@ import { Session } from "next-auth";
 import { ServersideSessionHandler } from "lib/middleware";
 
 import { useRouter } from "next/router";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import Footer from "components/Footer";
 import { PrettyPrintJson } from "components/utilComponents";
@@ -31,18 +31,17 @@ const Dashboard: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
   data: session,
 }) => {
   const router = useRouter();
-  // const [loading, setLoading] = useState(!!session);
-
-  const email = useMemo(() => session?.user?.email ?? "", [session]);
+  const [loading, setLoading] = useState(!!session);
 
   useEffect(() => {
-    if (!session) return; // FIXME: load session;
+    const signInFirestore = async () => {
+      const result = await signInFirebase();
+      console.log(`signed in!: `, result);
+    };
+    signInFirestore();
+  }, []);
 
-    (async () => {
-      const userCollectionRef = getUserCollection(email, "store");
-      await signInFirebase(); // loading;
-    })();
-  });
+  const email = useMemo(() => session?.user?.email ?? "", [session]);
 
   return (
     <Container>

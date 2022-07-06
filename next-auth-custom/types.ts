@@ -7,7 +7,10 @@ export interface Session {
       id: string;
       image: string;
       email: string;
+      emailVerified: Boolean;
+      name: string
     };
     emailVerified: boolean;
+    id: string;
   
 } & DefaultSession["session"];

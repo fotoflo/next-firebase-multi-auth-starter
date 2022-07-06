@@ -1,5 +1,14 @@
 import { Timestamp } from "firebase/firestore";
-import { getUserCollection, addDoc, getDocs } from "lib/firebase-web";
+import {
+  getUserCollection,
+  addDoc,
+  signInFirebase,
+  db,
+} from "lib/firebase-web";
+
+import { doc, collection, getDocs } from "firebase/firestore";
+
+import { getAuth, signInWithCustomToken } from "firebase/auth";
 
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
@@ -14,10 +23,18 @@ const TestFirebase = ({ email }: Props) => {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      console.log("Fetching user data");
-      const userCollectionRef = await getUserCollection(email, "store");
-      const snapshot = await getDocs(userCollectionRef);
+      const auth = getAuth();
+      const token = await fetch("/api/auth/token").then((res) => res.text());
+      console.log(`Fetching user data with token ${token.slice(0, 20)}`);
 
+      const userCredential = await signInWithCustomToken(auth, token).catch(
+        (err) => {
+          console.log(`couldnt sign in with custom token: ${err.errorMessage}`);
+        }
+      );
+
+      const userCollectionRef = collection(db, `/store/${email}/store/`);
+      const snapshot = await getDocs(userCollectionRef);
       const data = snapshot.docs.map((doc) => {
         return doc.data();
       });
@@ -42,8 +59,8 @@ const TestFirebase = ({ email }: Props) => {
 
   const items = data.map((item) => {
     return (
-      <li key={item.time.seconds}>
-        {item.user} : {item.time.seconds}
+      <li key={item.time?.seconds}>
+        {item.user} : {item.time?.seconds}
       </li>
     );
   });

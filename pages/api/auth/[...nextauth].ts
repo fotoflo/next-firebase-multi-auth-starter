@@ -25,5 +25,11 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
+  callbacks: {
+    session: async (session) => {
+      session.id = session.user.id;
+      return Promise.resolve(session);
+    },
+  },
   adapter: FirebaseAdapter(db),
 });

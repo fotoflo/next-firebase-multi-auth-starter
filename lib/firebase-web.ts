@@ -47,13 +47,20 @@ export const analytics = (() => {
 })();
 export const db = getFirestore(app);
 
-export const FirebaseTimestamp = serverTimestamp;
-export const DeleteField = deleteField;
-
 export async function signInFirebase() {
   const token = await fetch("/api/auth/token").then((res) => res.text());
-  await signInWithCustomToken(auth, token);
+  return await signInWithCustomToken(auth, token)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      return user;
+    })
+    .catch((err) => {
+      console.log(`couldnt sign in with custom token: ${err.errorMessage}`);
+    });
 }
+
+export const FirebaseTimestamp = serverTimestamp;
+export const DeleteField = deleteField;
 
 export async function trySignInWithCustomToken<T>(
   f?: (() => Promise<T>) | Promise<T>
@@ -71,7 +78,7 @@ export async function trySignInWithCustomToken<T>(
     await sleep(100);
   }
 
-  throw new Error("Fail sign in with custom token.");
+  throw new Error("Failed to sign in with custom token.");
 }
 
 export const addDoc = ((reference, data) => {
