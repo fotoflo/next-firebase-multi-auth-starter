@@ -13,6 +13,7 @@ import { getAuth, signInWithCustomToken } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { PrettyPrintJson } from "./utilComponents";
+import { useIsRTL } from "react-bootstrap/esm/ThemeProvider";
 
 type Props = {
   email: string;
@@ -33,13 +34,20 @@ const TestFirebase = ({ email }: Props) => {
         }
       );
 
-      const userCollectionRef = collection(db, `/store/${email}/store/`);
-      const snapshot = await getDocs(userCollectionRef);
-      const data = snapshot.docs.map((doc) => {
-        return doc.data();
-      });
+      const userCollectionRef = collection(
+        db,
+        `/store/${"fotoflo@gmail.com"}/store/`
+      );
 
-      return setData(data);
+      try {
+        const snapshot = await getDocs(userCollectionRef);
+        const data = snapshot.docs.map((doc) => {
+          return doc.data();
+        });
+        return setData(data);
+      } catch (error) {
+        console.log("error writing to firebase: ", error.code);
+      }
     };
 
     fetchUserData();

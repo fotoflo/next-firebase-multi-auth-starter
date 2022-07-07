@@ -23,7 +23,7 @@ import GoogleLoginButton from "components/GoogleLoginButton";
 import GithubLoginButton from "components/GithubLoginButton";
 
 import NavBar from "components/NavBar";
-import TestFirebase from "components/TestFirebase";
+import FirebaseDebugButton from "components/FirebaseDebugButton";
 
 import { Container } from "react-bootstrap";
 
@@ -56,7 +56,7 @@ const Dashboard: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
             <header className="header"></header>
             <PrettyPrintJson data={session} />
 
-            <TestFirebase email={email} />
+            <FirebaseDebugButton email={email} />
 
             <section className="main"></section>
           </>
