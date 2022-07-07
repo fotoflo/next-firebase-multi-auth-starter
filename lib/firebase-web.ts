@@ -4,6 +4,7 @@ import { getAuth, signInWithCustomToken } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import {
   getFirestore,
+  connectFirestoreEmulator,
   doc,
   addDoc as _addDoc,
   getDoc as _getDoc,
@@ -46,6 +47,7 @@ export const analytics = (() => {
   return null;
 })();
 export const db = getFirestore(app);
+connectFirestoreEmulator(db, "localhost", 8080);
 
 export async function signInFirebase() {
   const token = await fetch("/api/auth/token").then((res) => res.text());
