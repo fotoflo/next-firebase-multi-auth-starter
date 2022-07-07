@@ -10,14 +10,11 @@ type ButtonProps = {
 };
 
 const GoogleLoginButton: React.FC<ButtonProps> = ({
-  prompt,
+  prompt = "Login With Google",
   provider = "google",
 }) => {
-  if (!prompt) {
-    prompt = "Login With Google";
-  }
   return (
-    <GoogleButton onClick={() => signIn("google")}>
+    <GoogleButton onClick={() => signIn(provider)}>
       <FaGoogle /> {prompt}
     </GoogleButton>
   );
