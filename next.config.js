@@ -15,6 +15,7 @@ const nextConfig = {
   webConfig: {
     env: process.env.NODE_ENV,
   },
+  DEFAULT_THEME: "dark",
 };
 
 if (nextConfig.clientSide) {

@@ -1,11 +1,12 @@
 import React from "react";
+import styled from "styled-components";
 import { signOut } from "next-auth/react";
 import { Button } from "react-bootstrap";
 import { FaSignOutAlt } from "react-icons/fa";
 
 const SignOutButton: React.FC = () => {
   return (
-    <Button
+    <SignoutButton
       variant="secondary"
       onClick={() => {
         signOut();
@@ -13,8 +14,13 @@ const SignOutButton: React.FC = () => {
     >
       <FaSignOutAlt />
       Sign out
-    </Button>
+    </SignoutButton>
   );
 };
+
+const SignoutButton = styled(Button)`
+  margin-right: 10px;
+  width: 100%;
+`;
 
 export default SignOutButton;

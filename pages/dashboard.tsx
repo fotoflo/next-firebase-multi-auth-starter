@@ -27,8 +27,14 @@ import FirebaseDebugButton from "components/FirebaseDebugButton";
 
 import { Container } from "react-bootstrap";
 
-const Dashboard: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
+const Dashboard: NextPage<{ data: Session & { id: string } }> = ({
   data: session,
+  theme,
+  themeToggler,
+}: {
+  data: Session;
+  theme: any;
+  themeToggler: any;
 }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(!!session);
@@ -47,7 +53,7 @@ const Dashboard: NextPage<{ data: Session & { id: string }; todos: any[] }> = ({
     <Container>
       {/* <Loading block={loading} /> */}
 
-      <NavBar session={session} />
+      <NavBar theme={theme} themeToggler={themeToggler} session={session} />
       <section>
         <GithubLoginButton />
         <GoogleLoginButton prompt="Login with Gmail" provider="gmail" />

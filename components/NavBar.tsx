@@ -1,19 +1,39 @@
 import React from "react";
 import Link from "next/link";
+import styled from "styled-components";
 
-import { Session } from "../lib/types";
-import { Col, Nav } from "react-bootstrap";
+import { Session } from "next-auth-custom/types";
+import { Col, Nav, Navbar } from "react-bootstrap";
 import Avatar from "./Avatar";
 import SignOutButton from "./SignOutButton";
 import GoogleLoginButton from "./GoogleLoginButton";
 
-function NavBar({ session }: { session: Session }) {
+import ThemeToggleSwitch from "./ThemeToggleSwitch";
+import { DEFAULT_THEME } from "../next.config";
+
+function NavBar({
+  session,
+  theme,
+  themeToggler,
+}: {
+  session: Session;
+  theme: any;
+  themeToggler: any;
+}) {
+  const getDefaultThemeToggleSwitchColor = () => {
+    return DEFAULT_THEME === "light" ? true : false;
+  };
+
   return (
-    <Nav>
+    <StyledNavbar variant={theme}>
       <Col md={1}>
         <h1>CloudPoacher!</h1>
       </Col>
       <Col md={9}></Col>
+      <ThemeToggleSwitch
+        defaultValue={getDefaultThemeToggleSwitchColor()}
+        toggleFn={themeToggler}
+      />
       <Col className="my-auto" md={1}>
         {session && <SignOutButton />}
       </Col>
@@ -27,8 +47,17 @@ function NavBar({ session }: { session: Session }) {
         )}
         {!session && <GoogleLoginButton prompt="Login" />}
       </Col>
-    </Nav>
+    </StyledNavbar>
   );
 }
+
+const StyledNavbar = styled(Navbar)`
+  border-bottom: 1px solid ${(props) => props.theme.fontColor};
+  color: ${(props) => props.theme.fontColor};
+  left: 50%;
+  transform: translatex(-50%);
+  width: 95%;
+  margin-bottom: 2rem;
+`;
 
 export default NavBar;
