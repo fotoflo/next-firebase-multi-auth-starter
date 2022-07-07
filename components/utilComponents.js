@@ -1,10 +1,10 @@
 import React from "react";
 
-import { consoleObj } from "../lib/utils";
+import { consoleObj } from "lib/utils";
 
 import { Button } from "react-bootstrap";
 
-import { webConfig } from "../next.config";
+import { webConfig } from "next.config";
 
 import styled from "styled-components";
 

@@ -1,5 +1,4 @@
 import { getSession } from "next-auth/react";
-import { getCustomToken } from "./firebase-server";
 
 export const ServersideSessionHandler: GetServerSideProps = async (context) => {
   const session = await getSession(context);

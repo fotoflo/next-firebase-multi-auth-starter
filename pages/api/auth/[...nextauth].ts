@@ -1,7 +1,7 @@
 import NextAuth, { Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
-import GmailProvider from "../../../next-auth-custom/GmailProvider";
+import GmailProvider from "next-auth-custom/GmailProvider";
 import FirebaseAdapter from "next-auth-custom/firebase-adapter";
 import { db } from "lib/firebase-server";
 

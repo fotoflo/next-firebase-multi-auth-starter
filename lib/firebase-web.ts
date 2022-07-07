@@ -21,7 +21,7 @@ import {
   serverTimestamp,
   deleteField,
 } from "firebase/firestore";
-import { sleep } from "./utils";
+import { sleep } from "lib/utils";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries

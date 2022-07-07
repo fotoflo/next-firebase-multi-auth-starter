@@ -1,4 +1,4 @@
-import styles from "./DebugPrint.module.css";
+import styles from "lib/DebugPrint.module.css";
 
 export const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 export const urlRegex = new RegExp(

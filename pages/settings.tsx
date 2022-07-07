@@ -5,8 +5,8 @@ import Link from "next/link";
 import { Button, Container } from "react-bootstrap";
 import { FaGithub } from "react-icons/fa";
 import styled from "styled-components";
-import { DebugButton, PrettyPrintJson } from "../components/utilComponents";
-import Avatar from "../components/Avatar";
+import { DebugButton, PrettyPrintJson } from "components/utilComponents";
+import Avatar from "components/Avatar";
 import { ServersideSessionHandler } from "lib/middleware";
 import { webConfig } from "next.config";
 

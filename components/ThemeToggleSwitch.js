@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { lightTheme, darkTheme } from "./Themes";
+import { lightTheme, darkTheme } from "components/Themes";
 
 function ToggleSwitch({ className, defaultValue, toggleFn, ...props }) {
   const [checked, setChecked] = useState(defaultValue || false);

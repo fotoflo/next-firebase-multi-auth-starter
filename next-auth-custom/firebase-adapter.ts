@@ -7,7 +7,7 @@ import {
   AdapterUser,
   VerificationToken,
 } from "next-auth/adapters";
-import { findOne, from } from "./utils";
+import { findOne, from } from "next-auth-custom/utils";
 import { Account } from "next-auth";
 
 export type FirebaseAdapterProps = {

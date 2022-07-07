@@ -1,6 +1,11 @@
-const { default: next } = require("next");
+import { NextConfig } from "next";
 
-/** @type {import('next').NextConfig} */
+const { default: next } = require("next");
+// Avoid using new JavaScript features not available in your target Node.js version.
+// next.config.js will not be parsed by Webpack, Babel or TypeScript.
+
+/** @type { import('next').NextConfig & DEFAULT_THEME = "light" || "dark" } */
+
 const nextConfig = {
   reactStrictMode: true,
   images: {

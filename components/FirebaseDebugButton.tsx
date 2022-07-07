@@ -12,7 +12,7 @@ import { getAuth, signInWithCustomToken } from "firebase/auth";
 
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import { PrettyPrintJson } from "./utilComponents";
+import { PrettyPrintJson } from "components/utilComponents";
 import { useIsRTL } from "react-bootstrap/esm/ThemeProvider";
 
 type Props = {

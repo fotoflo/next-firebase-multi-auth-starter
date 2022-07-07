@@ -4,12 +4,13 @@ import styled from "styled-components";
 
 import { Session } from "next-auth-custom/types";
 import { Col, Nav, Navbar } from "react-bootstrap";
-import Avatar from "./Avatar";
-import SignOutButton from "./SignOutButton";
-import GoogleLoginButton from "./GoogleLoginButton";
 
-import ThemeToggleSwitch from "./ThemeToggleSwitch";
-import { DEFAULT_THEME } from "../next.config";
+import Avatar from "components/Avatar";
+import SignOutButton from "components/SignOutButton";
+import GoogleLoginButton from "components/GoogleLoginButton";
+import ThemeToggleSwitch from "components/ThemeToggleSwitch";
+
+import { DEFAULT_THEME } from "next.config";
 
 function NavBar({
   session,
