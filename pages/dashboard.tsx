@@ -33,8 +33,8 @@ const Dashboard: NextPage<{ data: Session & { id: string } }> = ({
   themeToggler,
 }: {
   data: Session;
-  theme: any;
-  themeToggler: any;
+  theme: "light" | "dark";
+  themeToggler: Function;
 }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(!!session);

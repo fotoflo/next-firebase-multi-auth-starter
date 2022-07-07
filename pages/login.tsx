@@ -7,10 +7,16 @@ import { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import NavBar from "components/NavBar";
 
-const LoginPage: NextPage<{}> = () => {
+const LoginPage: NextPage<{}> = ({
+  theme,
+  themeToggler,
+}: {
+  theme: "light" | "dark";
+  themeToggler: Function;
+}) => {
   return (
     <Container>
-      <NavBar />
+      <NavBar theme={theme} themeToggler={themeToggler} />
       Login:
       <GoogleLoginButton />
     </Container>
