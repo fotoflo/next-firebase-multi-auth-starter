@@ -10,7 +10,8 @@
     "playwright": "npx playwright test",
     "playwright-headed": "npx playwright test --headed",
     "playwright-codegen": "npx playwright codegen localhost:3000",
-    "playwright-report": "npx playwright show-report"
+    "playwright-report": "npx playwright show-report",
+    "firestore": "firebase emulators:start"
   },
   "dependencies": {
     "bootstrap": "^5.1.3",

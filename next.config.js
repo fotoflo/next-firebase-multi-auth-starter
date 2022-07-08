@@ -1,5 +1,3 @@
-import { NextConfig } from "next";
-
 const { default: next } = require("next");
 // Avoid using new JavaScript features not available in your target Node.js version.
 // next.config.js will not be parsed by Webpack, Babel or TypeScript.

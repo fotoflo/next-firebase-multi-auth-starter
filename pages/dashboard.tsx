@@ -27,14 +27,16 @@ import FirebaseDebugButton from "components/FirebaseDebugButton";
 
 import { Container } from "react-bootstrap";
 
+import { Theme } from "types/themes";
+
 const Dashboard: NextPage<{ data: Session & { id: string } }> = ({
   data: session,
   theme,
   themeToggler,
 }: {
   data: Session;
-  theme: "light" | "dark";
-  themeToggler: Function;
+  theme: Theme["theme"];
+  themeToggler: Theme["themeToggler"];
 }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(!!session);

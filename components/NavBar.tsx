@@ -11,6 +11,7 @@ import GoogleLoginButton from "components/GoogleLoginButton";
 import ThemeToggleSwitch from "components/ThemeToggleSwitch";
 
 import { DEFAULT_THEME } from "next.config";
+import { Theme } from "types/themes";
 
 function NavBar({
   session,
@@ -18,8 +19,8 @@ function NavBar({
   themeToggler,
 }: {
   session: Session;
-  theme: any;
-  themeToggler: any;
+  theme: Theme["theme"];
+  themeToggler: Theme["themeToggler"];
 }) {
   const getDefaultThemeToggleSwitchColor = () => {
     return DEFAULT_THEME === "light" ? true : false;

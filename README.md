@@ -19,6 +19,11 @@ $ ln -s ./e2e/pre-commit /.git/hooks/pre-commit
 npm run playwright-headed
 (headed may have a problem with a captcha)
 
+# debugging firestore rules 
+see commit 50f3de62
+
+`$ npm run firebase emulators:start`
+
 # envirnment 
 see .env.local.example
 

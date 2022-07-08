@@ -7,12 +7,14 @@ import { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import NavBar from "components/NavBar";
 
+import Theme from "types/themes";
+
 const LoginPage: NextPage<{}> = ({
   theme,
   themeToggler,
 }: {
-  theme: "light" | "dark";
-  themeToggler: Function;
+  theme: Theme.Theme;
+  themeToggler: Theme.themeToggler;
 }) => {
   return (
     <Container>
