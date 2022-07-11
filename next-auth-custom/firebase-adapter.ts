@@ -23,27 +23,27 @@ export default function FirebaseAdapter(
 
   const userCollectionRef = db
     .collection(adapterCollectionName)
-    .doc("store")
+    .doc("auth_data")
     .collection("user");
 
   const accountCollectionRef = db
     .collection(adapterCollectionName)
-    .doc("store")
+    .doc("auth_data")
     .collection("account");
 
   const sessionCollectionRef = db
     .collection(adapterCollectionName)
-    .doc("store")
+    .doc("auth_data")
     .collection("session");
 
   const verificationTokenCollectionRef = db
     .collection(adapterCollectionName)
-    .doc("store")
+    .doc("auth_data")
     .collection("verificationToken");
 
   const customTokenCollectionRef = db
     .collection(adapterCollectionName)
-    .doc("store")
+    .doc("auth_data")
     .collection("customToken");
 
   const findUserDoc = (key: string) => userCollectionRef.doc(key);
