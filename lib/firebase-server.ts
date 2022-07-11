@@ -45,7 +45,7 @@ export type CustomToken = {
 export async function getCustomToken(sessionToken: string) {
   const tokenDocRef = db
     .collection(adapterCollectionName)
-    .doc("auth_data")
+    .doc("auth_store")
     .collection("customToken")
     .doc(sessionToken);
   const tokenDoc = await tokenDocRef.get();
@@ -58,7 +58,7 @@ export async function getCustomToken(sessionToken: string) {
 export async function updateCustomToken(sessionToken: string, token: string) {
   const tokenDocRef = db
     .collection(adapterCollectionName)
-    .doc("auth_data")
+    .doc("auth_store")
     .collection("customToken")
     .doc(sessionToken);
 
@@ -118,7 +118,7 @@ export async function removeExpiredSessions(
 
   const q = db
     .collection(adapterCollectionName)
-    .doc("auth_data")
+    .doc("auth_store")
     .collection("session")
     .where("expires", "<", new Date())
     .limit(limit);
