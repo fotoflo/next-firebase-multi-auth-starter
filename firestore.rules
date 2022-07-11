@@ -1,7 +1,7 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /store/{email}/{document=**} {
+    match /user_store/{email}/{document=**} {
     	allow read, write: if request.auth.token.user_id == email ;
       }
    // // && exists(/databases/$(database)/documents/_next_auth_firebase_adapter_/store/customToken/$(request.auth.token.sessionToken)); // To enhance security, after sign out, the issued custom token is deactivated and has a session method security level, but database read costs are added for each task.

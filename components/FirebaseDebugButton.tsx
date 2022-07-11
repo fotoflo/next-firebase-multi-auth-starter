@@ -36,7 +36,7 @@ const TestFirebase = ({ email }: Props) => {
 
       const userCollectionRef = collection(
         db,
-        `/store/${"fotoflo@gmail.com"}/store/`
+        `/user_store/${"fotoflo@gmail.com"}/debug_button_data/`
       );
 
       try {
@@ -56,7 +56,10 @@ const TestFirebase = ({ email }: Props) => {
   console.log(`testing to ${email}`);
 
   const clickHandler = async () => {
-    const userCollectionRef = await getUserCollection(email, "store");
+    const userCollectionRef = await getUserCollection(
+      email,
+      "debug_button_data"
+    );
     if (userCollectionRef) {
       await addDoc(userCollectionRef, {
         user: email,

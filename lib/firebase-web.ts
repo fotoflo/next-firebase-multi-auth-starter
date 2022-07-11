@@ -115,16 +115,16 @@ export const deleteDoc = ((reference) => {
 }) as typeof _deleteDoc;
 
 export function validCustomToken(id: string) {
-  const docRef = doc(db, "store", id);
+  const docRef = doc(db, "user_store", id);
   return _getDoc(docRef);
 }
 
 export function getUserDoc(email: string, ...paths: string[]) {
-  return doc(db, "store", email, ...paths);
+  return doc(db, "user_store", email, ...paths);
 }
 
 export function getUserCollection(email: string, ...paths: string[]) {
-  return collection(db, "store", email, ...paths);
+  return collection(db, "user_store", email, ...paths);
 }
 
 export async function findOne(
