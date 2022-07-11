@@ -23,6 +23,8 @@ import {
 } from "firebase/firestore";
 import { sleep } from "lib/utils";
 
+import { useEmulator } from "next.config";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -47,7 +49,10 @@ export const analytics = (() => {
   return null;
 })();
 export const db = getFirestore(app);
-connectFirestoreEmulator(db, "localhost", 8080);
+
+if (useEmulator) {
+  connectFirestoreEmulator(db, "localhost", 8080);
+}
 
 export async function signInFirebase() {
   const token = await fetch("/api/auth/token").then((res) => res.text());

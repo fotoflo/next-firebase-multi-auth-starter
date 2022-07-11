@@ -19,6 +19,8 @@ const nextConfig = {
     env: process.env.NODE_ENV,
   },
   DEFAULT_THEME: "dark",
+  adapterCollectionName: "next_auth",
+  useEmulator: false,
 };
 
 if (nextConfig.clientSide) {

@@ -6,6 +6,7 @@ import { getSession } from "next-auth/react";
 import { Session } from "next-auth-custom/types";
 import { asyncMap, findMany } from "next-auth-custom/utils";
 import FirebaseAdapter from "next-auth-custom/firebase-adapter";
+import adapterCollectionName from "next.config";
 
 // https://github.com/vercel/next.js/issues/1999#issuecomment-302244429
 if (!admin.apps.length) {
@@ -43,7 +44,7 @@ export type CustomToken = {
 
 export async function getCustomToken(sessionToken: string) {
   const tokenDocRef = db
-    .collection("_next_auth_firebase_adapter_")
+    .collection(adapterCollectionName)
     .doc("store")
     .collection("customToken")
     .doc(sessionToken);
@@ -56,7 +57,7 @@ export async function getCustomToken(sessionToken: string) {
 
 export async function updateCustomToken(sessionToken: string, token: string) {
   const tokenDocRef = db
-    .collection("_next_auth_firebase_adapter_")
+    .collection(adapterCollectionName)
     .doc("store")
     .collection("customToken")
     .doc(sessionToken);
@@ -116,7 +117,7 @@ export async function removeExpiredSessions(
   const adapter = FirebaseAdapter(db);
 
   const q = db
-    .collection("_next_auth_firebase_adapter_")
+    .collection(adapterCollectionName)
     .doc("store")
     .collection("session")
     .where("expires", "<", new Date())
