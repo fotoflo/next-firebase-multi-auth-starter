@@ -44,9 +44,7 @@ export type CustomToken = {
 
 export async function getCustomToken(sessionToken: string) {
   const tokenDocRef = db
-    .collection(adapterCollectionName)
-    .doc("auth_store")
-    .collection("customToken")
+    .collection(`${adapterCollectionName}/auth_store/customToken`)
     .doc(sessionToken);
   const tokenDoc = await tokenDocRef.get();
   if (!tokenDoc.exists) return;
@@ -57,9 +55,7 @@ export async function getCustomToken(sessionToken: string) {
 
 export async function updateCustomToken(sessionToken: string, token: string) {
   const tokenDocRef = db
-    .collection(adapterCollectionName)
-    .doc("auth_store")
-    .collection("customToken")
+    .collection(`${adapterCollectionName}/auth_store/customToken`)
     .doc(sessionToken);
 
   await tokenDocRef.set({
@@ -117,9 +113,7 @@ export async function removeExpiredSessions(
   const adapter = FirebaseAdapter(db);
 
   const q = db
-    .collection(adapterCollectionName)
-    .doc("auth_store")
-    .collection("session")
+    .collection(`${adapterCollectionName}/auth_store/session`)
     .where("expires", "<", new Date())
     .limit(limit);
   const expiredSessionDocs = await findMany(q);

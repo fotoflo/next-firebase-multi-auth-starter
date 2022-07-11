@@ -21,30 +21,25 @@ export default function FirebaseAdapter(
   const adapterCollectionName =
     options.adapterCollectionName ?? "_next_auth_firebase_adapter_";
 
-  const userCollectionRef = db
-    .collection(adapterCollectionName)
-    .doc("auth_store")
-    .collection("user");
+  const userCollectionRef = db.collection(
+    `${adapterCollectionName}/auth_store/user`
+  );
 
-  const accountCollectionRef = db
-    .collection(adapterCollectionName)
-    .doc("auth_store")
-    .collection("account");
+  const accountCollectionRef = db.collection(
+    `${adapterCollectionName}/auth_store/account`
+  );
 
-  const sessionCollectionRef = db
-    .collection(adapterCollectionName)
-    .doc("auth_store")
-    .collection("session");
+  const sessionCollectionRef = db.collection(
+    `${adapterCollectionName}/auth_store/session`
+  );
 
-  const verificationTokenCollectionRef = db
-    .collection(adapterCollectionName)
-    .doc("auth_store")
-    .collection("verificationToken");
+  const verificationTokenCollectionRef = db.collection(
+    `${adapterCollectionName}/auth_store/verificationToken`
+  );
 
-  const customTokenCollectionRef = db
-    .collection(adapterCollectionName)
-    .doc("auth_store")
-    .collection("customToken");
+  const customTokenCollectionRef = db.collection(
+    `${adapterCollectionName}/auth_store/customToken`
+  );
 
   const findUserDoc = (key: string) => userCollectionRef.doc(key);
   const findAccountDoc = (key: string) => accountCollectionRef.doc(key);
