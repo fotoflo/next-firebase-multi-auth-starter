@@ -3,7 +3,14 @@ const { default: next } = require("next");
 // next.config.js will not be parsed by Webpack, Babel or TypeScript.
 
 /**
- * @type {import('next').NextConfig & DEFAULT_THEME & ADAPTER_COLLECTION_NAME & USE_FIREBASE_EMULATOR & IS_LOCAL_ENV}
+ * @type {import('next').NextConfig
+ * & IS_CLIENT_SIDE = boolean
+ * & IS_SERVER_SIDE = boolean
+ * & IS_LOCAL_ENV = boolean
+ * & USE_FIREBASE_EMULATOR = boolean
+ * & DEFAULT_THEME = "light" | "dark"
+ * & ADAPTER_COLLECTION_NAME = string
+ * }
  *
  * Our convention is to use app configuration CONSTANTS in capitals
  **/
@@ -17,21 +24,12 @@ const nextConfig = {
     // Enables the styled-components SWC transform
     styledComponents: true,
   },
-  clientSide: typeof window !== "undefined",
-  serverSide: typeof window === "undefined",
-  webConfig: {
-    env: process.env.NODE_ENV,
-  },
+  IS_CLIENT_SIDE: typeof window !== "undefined",
+  IS_SERVER_SIDE: typeof window === "undefined",
+  IS_LOCAL_ENV: process.env.NODE_ENV === "development" ? true : false,
+  USE_FIREBASE_EMULATOR: true,
   DEFAULT_THEME: "dark",
   ADAPTER_COLLECTION_NAME: "next_auth",
-  USE_FIREBASE_EMULATOR: true,
-  IS_LOCAL_ENV: process.env.NODE_ENV === "development" ? true : false,
 };
-
-if (nextConfig.clientSide) {
-  nextConfig.webConfig = {
-    env: window.location.host.match("localhost") ? "dev" : "prod",
-  };
-}
 
 module.exports = nextConfig;

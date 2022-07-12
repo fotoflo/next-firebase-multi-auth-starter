@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { DebugButton, PrettyPrintJson } from "components/utilComponents";
 import Avatar from "components/Avatar";
 import { ServersideSessionHandler } from "lib/middleware";
-import { webConfig } from "next.config";
+import { IS_LOCAL_ENV } from "next.config";
 
 function Settings({ data: session }) {
   return (
@@ -18,7 +18,7 @@ function Settings({ data: session }) {
         <p>Githunter Version: {process.env.REACT_APP_VERSION}</p>
         <p>Settings</p>
         {/* <DebugButton authUser={authUser} /> */}
-        <p>host: {webConfig.env} </p>
+        <p>is local env: {IS_LOCAL_ENV ? "local" : "prod"} </p>
       </div>
       <PrettyPrintJson data={session} />
     </Container>

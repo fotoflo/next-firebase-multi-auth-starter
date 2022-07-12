@@ -4,7 +4,7 @@ import { consoleObj } from "lib/utils";
 
 import { Button } from "react-bootstrap";
 
-import { webConfig } from "next.config";
+import { IS_LOCAL_ENV } from "next.config";
 
 import styled from "styled-components";
 
@@ -14,11 +14,7 @@ export const DebugButton = (props) => {
   };
 
   return (
-    <>
-      {webConfig.env === "dev" && (
-        <Button onClick={() => debug()}>&nbsp; Debug</Button>
-      )}
-    </>
+    <>{IS_LOCAL_ENV && <Button onClick={() => debug()}>&nbsp; Debug</Button>}</>
   );
 };
 
