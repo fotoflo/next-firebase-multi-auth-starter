@@ -9,36 +9,27 @@ import {
 } from "next-auth/adapters";
 import { findOne, from } from "next-auth-custom/utils";
 import { Account } from "next-auth";
+import ADAPTER_COLLECTION_NAME from "next.config";
 
-export type FirebaseAdapterProps = {
-  adapterCollectionName?: string;
-};
-
-export default function FirebaseAdapter(
-  db: Firestore,
-  options: FirebaseAdapterProps = {}
-): Adapter {
-  const adapterCollectionName =
-    options.adapterCollectionName ?? "_next_auth_firebase_adapter_";
-
+export default function FirebaseAdapter(db: Firestore): Adapter {
   const userCollectionRef = db.collection(
-    `${adapterCollectionName}/auth_store/user`
+    `${ADAPTER_COLLECTION_NAME}/auth_store/user`
   );
 
   const accountCollectionRef = db.collection(
-    `${adapterCollectionName}/auth_store/account`
+    `${ADAPTER_COLLECTION_NAME}/auth_store/account`
   );
 
   const sessionCollectionRef = db.collection(
-    `${adapterCollectionName}/auth_store/session`
+    `${ADAPTER_COLLECTION_NAME}/auth_store/session`
   );
 
   const verificationTokenCollectionRef = db.collection(
-    `${adapterCollectionName}/auth_store/verificationToken`
+    `${ADAPTER_COLLECTION_NAME}/auth_store/verificationToken`
   );
 
   const customTokenCollectionRef = db.collection(
-    `${adapterCollectionName}/auth_store/customToken`
+    `${ADAPTER_COLLECTION_NAME}/auth_store/customToken`
   );
 
   const findUserDoc = (key: string) => userCollectionRef.doc(key);

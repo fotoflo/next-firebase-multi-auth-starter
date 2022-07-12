@@ -2,7 +2,11 @@ const { default: next } = require("next");
 // Avoid using new JavaScript features not available in your target Node.js version.
 // next.config.js will not be parsed by Webpack, Babel or TypeScript.
 
-/** @type { import('next').NextConfig & DEFAULT_THEME = "light" || "dark" } */
+/**
+ * @type {import('next').NextConfig & DEFAULT_THEME & ADAPTER_COLLECTION_NAME & USE_EMULATOR}
+ *
+ * Our convention is to use app configuration CONSTANTS in capitals
+ **/
 
 const nextConfig = {
   reactStrictMode: true,
@@ -19,8 +23,8 @@ const nextConfig = {
     env: process.env.NODE_ENV,
   },
   DEFAULT_THEME: "dark",
-  adapterCollectionName: "next_auth",
-  useEmulator: false,
+  ADAPTER_COLLECTION_NAME: "next_auth",
+  USE_EMULATOR: false,
 };
 
 if (nextConfig.clientSide) {
