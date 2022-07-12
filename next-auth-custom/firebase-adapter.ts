@@ -9,7 +9,7 @@ import {
 } from "next-auth/adapters";
 import { findOne, from } from "next-auth-custom/utils";
 import { Account } from "next-auth";
-import ADAPTER_COLLECTION_NAME from "next.config";
+import { ADAPTER_COLLECTION_NAME } from "next.config";
 
 export default function FirebaseAdapter(db: Firestore): Adapter {
   const userCollectionRef = db.collection(

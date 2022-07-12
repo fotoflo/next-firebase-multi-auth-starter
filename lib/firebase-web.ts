@@ -23,7 +23,7 @@ import {
 } from "firebase/firestore";
 import { sleep } from "lib/utils";
 
-import { useEmulator } from "next.config";
+import { USE_FIREBASE_EMULATOR } from "next.config";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -50,7 +50,7 @@ export const analytics = (() => {
 })();
 export const db = getFirestore(app);
 
-if (useEmulator) {
+if (USE_FIREBASE_EMULATOR) {
   connectFirestoreEmulator(db, "localhost", 8080);
 }
 

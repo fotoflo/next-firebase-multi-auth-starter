@@ -6,7 +6,7 @@ import { getSession } from "next-auth/react";
 import { Session } from "next-auth-custom/types";
 import { asyncMap, findMany } from "next-auth-custom/utils";
 import FirebaseAdapter from "next-auth-custom/firebase-adapter";
-import ADAPTER_COLLECTION_NAME from "next.config";
+import { ADAPTER_COLLECTION_NAME } from "next.config";
 
 // https://github.com/vercel/next.js/issues/1999#issuecomment-302244429
 if (!admin.apps.length) {
