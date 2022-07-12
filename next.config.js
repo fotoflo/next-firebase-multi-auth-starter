@@ -3,7 +3,7 @@ const { default: next } = require("next");
 // next.config.js will not be parsed by Webpack, Babel or TypeScript.
 
 /**
- * @type {import('next').NextConfig & DEFAULT_THEME & ADAPTER_COLLECTION_NAME & USE_FIREBASE_EMULATOR}
+ * @type {import('next').NextConfig & DEFAULT_THEME & ADAPTER_COLLECTION_NAME & USE_FIREBASE_EMULATOR & IS_LOCAL_ENV}
  *
  * Our convention is to use app configuration CONSTANTS in capitals
  **/
@@ -25,6 +25,7 @@ const nextConfig = {
   DEFAULT_THEME: "dark",
   ADAPTER_COLLECTION_NAME: "next_auth",
   USE_FIREBASE_EMULATOR: true,
+  IS_LOCAL_ENV: process.env.NODE_ENV === "development" ? true : false,
 };
 
 if (nextConfig.clientSide) {

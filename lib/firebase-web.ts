@@ -23,7 +23,7 @@ import {
 } from "firebase/firestore";
 import { sleep } from "lib/utils";
 
-import { USE_FIREBASE_EMULATOR } from "next.config";
+import { USE_FIREBASE_EMULATOR, IS_LOCAL_ENV } from "next.config";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -50,7 +50,7 @@ export const analytics = (() => {
 })();
 export const db = getFirestore(app);
 
-if (USE_FIREBASE_EMULATOR) {
+if (USE_FIREBASE_EMULATOR && IS_LOCAL_ENV) {
   connectFirestoreEmulator(db, "localhost", 8080);
 }
 
