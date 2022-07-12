@@ -83,14 +83,18 @@ export function createFirebaseCustomTokenHandler({
   return async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== method) return res.status(403).json(false);
     const session = (await getSession({ req })) as Session;
+
     if (!session) return res.status(403).json(false);
     const sessionToken = getSessionToken(req);
     const { user } = session as unknown as {
       user: NonNullable<Session["user"]>;
     };
     const email = user.email as string;
+
     let token = await getCustomToken(sessionToken);
     if (token) return res.json(token);
+
+    const userId = user.id as string;
 
     token = await admin
       .auth()
@@ -124,4 +128,18 @@ export async function removeExpiredSessions(
     ),
     asyncMax
   );
+}
+
+export async function getExternalTokens(userId) {
+  const adapter = FirebaseAdapter(db);
+
+  const q = db
+    .collection(`${ADAPTER_COLLECTION_NAME}/auth_store/account`)
+    .where("userId", "==", userId);
+
+  const accounts = await findMany(q);
+
+  console.log({ accounts });
+
+  return [];
 }

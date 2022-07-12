@@ -11,7 +11,9 @@
     "playwright-headed": "npx playwright test --headed",
     "playwright-codegen": "npx playwright codegen localhost:3000",
     "playwright-report": "npx playwright show-report",
-    "firestore": "firebase emulators:start"
+    "firestore": "firebase emulators:start",
+    "test": "jest --watch",
+    "test:ci": "jest --ci"
   },
   "dependencies": {
     "bootstrap": "^5.1.3",
@@ -38,6 +40,11 @@
     "dotenv": "^16.0.1",
     "eslint": "8.14.0",
     "eslint-config-next": "12.1.5",
-    "typescript": "4.6.4"
+    "typescript": "4.6.4",
+    "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.2.0",
+    "@testing-library/user-event": "^14.2.0"
   }
 }
