@@ -4,12 +4,12 @@ const { default: next } = require("next");
 
 /**
  * @type {import('next').NextConfig
- * & IS_CLIENT_SIDE = boolean
- * & IS_SERVER_SIDE = boolean
- * & IS_LOCAL_ENV = boolean
- * & USE_FIREBASE_EMULATOR = boolean
- * & DEFAULT_THEME = "light" | "dark"
- * & ADAPTER_COLLECTION_NAME = string
+ * @param IS_CLIENT_SIDE = boolean
+ * @param IS_SERVER_SIDE = boolean
+ * @param IS_LOCAL_ENV = boolean
+ * @param USE_FIREBASE_EMULATOR = boolean
+ * @param DEFAULT_THEME = "light" | "dark"
+ * @param ADAPTER_COLLECTION_NAME = string
  * }
  *
  * Our convention is to use app configuration CONSTANTS in capitals
