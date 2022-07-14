@@ -16,7 +16,6 @@ export default function MyApp({
   const [theme, setTheme] = useState(DEFAULT_THEME);
   const themeToggler = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");
-    console.log("toggling");
   };
 
   return (

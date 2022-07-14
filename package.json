@@ -12,8 +12,9 @@
     "playwright-codegen": "npx playwright codegen localhost:3000",
     "playwright-report": "npx playwright show-report",
     "firestore": "firebase emulators:start",
-    "test": "jest --watch",
-    "test:ci": "jest --ci"
+    "jest": "jest --watch",
+    "jest:ci": "jest --ci",
+    "jestlog": "jest --no-color 2>jest.log"
   },
   "dependencies": {
     "bootstrap": "^5.1.3",

@@ -5,10 +5,10 @@ import GmailProvider from "next-auth-custom/GmailProvider";
 import FirebaseAdapter from "next-auth-custom/firebase-adapter";
 import { db } from "lib/firebase-server";
 
-console.log({
-  clientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID,
-  clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET,
-});
+// console.log({
+//   clientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID,
+//   clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET,
+// });
 
 export default NextAuth({
   providers: [

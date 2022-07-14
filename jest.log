@@ -1,0 +1,29 @@
+PASS __test__/config.test.js
+FAIL lib/__test__/firebase-server.test.js (5.432 s)
+  ● getExternalTokens › should return an array of tokens
+
+    FetchError: request to https://localhost:8080/$rpc/google.firestore.v1.Firestore/Commit failed, reason: write EPROTO 4422878592:error:1408F10B:SSL routines:ssl3_get_record:wrong version number:../deps/openssl/openssl/ssl/record/ssl3_record.c:332:
+
+      at ClientRequest.<anonymous> (node_modules/next/dist/compiled/node-fetch/index.js:1:64162)
+
+  ● getExternalTokens › should return an array of tokens
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      2 |
+      3 | describe("getExternalTokens", () => {
+    > 4 |   it("should return an array of tokens", async () => {
+        |   ^
+      5 |     const result = await getExternalTokens();
+      6 |     expect(result).toBeInstanceOf(Array);
+      7 |   });
+
+      at it (lib/__test__/firebase-server.test.js:4:3)
+      at Object.describe (lib/__test__/firebase-server.test.js:3:1)
+
+Test Suites: 1 failed, 1 passed, 2 total
+Tests:       1 failed, 3 passed, 4 total
+Snapshots:   0 total
+Time:        5.942 s, estimated 6 s
+Ran all test suites.

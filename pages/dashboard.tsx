@@ -44,7 +44,6 @@ const Dashboard: NextPage<{ data: Session & { id: string } }> = ({
   useEffect(() => {
     const signInFirestore = async () => {
       const result = await signInFirebase();
-      console.log(`signed in!: `, result);
     };
     signInFirestore();
   }, []);

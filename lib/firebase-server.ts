@@ -131,15 +131,48 @@ export async function removeExpiredSessions(
 }
 
 export async function getExternalTokens(userId) {
-  const adapter = FirebaseAdapter(db);
+  const citiesRef = db.collection("cities");
 
-  const q = db
-    .collection(`${ADAPTER_COLLECTION_NAME}/auth_store/account`)
-    .where("userId", "==", userId);
-
-  const accounts = await findMany(q);
-
-  console.log({ accounts });
+  await citiesRef.doc("SF").set({
+    name: "San Francisco",
+    state: "CA",
+    country: "USA",
+    capital: false,
+    population: 860000,
+    regions: ["west_coast", "norcal"],
+  });
+  await citiesRef.doc("LA").set({
+    name: "Los Angeles",
+    state: "CA",
+    country: "USA",
+    capital: false,
+    population: 3900000,
+    regions: ["west_coast", "socal"],
+  });
+  await citiesRef.doc("DC").set({
+    name: "Washington, D.C.",
+    state: null,
+    country: "USA",
+    capital: true,
+    population: 680000,
+    regions: ["east_coast"],
+  });
+  await citiesRef.doc("TOK").set({
+    name: "Tokyo",
+    state: null,
+    country: "Japan",
+    capital: true,
+    population: 9000000,
+    regions: ["kanto", "honshu"],
+  });
+  await citiesRef.doc("BJ").set({
+    name: "Beijing",
+    state: null,
+    country: "China",
+    capital: true,
+    population: 21500000,
+    regions: ["jingjinji", "hebei"],
+  });
 
   return [];
 }
