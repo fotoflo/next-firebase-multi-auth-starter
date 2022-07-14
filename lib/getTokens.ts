@@ -1,13 +1,6 @@
 import { db } from "./firebase-server";
-
-const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_apiKey,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_authDomain,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_projectId,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_storageBucket,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_messagingSenderId,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_appId,
-};
+import { ADAPTER_COLLECTION_NAME } from "next.config";
+import { findMany } from "next-auth-custom/utils";
 
 export async function saveCities() {
   const citiesRef = db.collection("cities");
@@ -22,4 +15,21 @@ export async function saveCities() {
   });
 
   return true;
+}
+
+export async function getCities() {
+  const doc = await db.doc("cities/SF").get();
+  return doc.data();
+}
+
+export async function getAllTokens(userId) {
+  const q = db
+    .collection(`${ADAPTER_COLLECTION_NAME}/auth_store/account`)
+    .where("userId", "==", userId);
+
+  const querySnap = await q.get();
+  const docs: QueryDocumentSnapshot<DocumentData>[] = [];
+  querySnap.forEach((doc) => docs.push(doc.data()));
+
+  return docs;
 }
