@@ -1,6 +1,5 @@
 import { db } from "./firebase-server";
 import { ADAPTER_COLLECTION_NAME } from "next.config";
-import { findMany } from "next-auth-custom/utils";
 
 export async function saveCities() {
   const citiesRef = db.collection("cities");
@@ -22,13 +21,23 @@ export async function getCities() {
   return doc.data();
 }
 
-export async function getAllTokens(userId) {
+export type UserAccount = {
+  access_token: string;
+  provider: "google" | "github" | "gmail";
+  scope: string;
+  token_type: "bearer" | "Bearer";
+  type: "oauth";
+  expires_at?: number;
+  userId: string;
+};
+
+export async function getAllTokens(userId: string): Promise<UserAccount[]> {
   const q = db
     .collection(`${ADAPTER_COLLECTION_NAME}/auth_store/account`)
     .where("userId", "==", userId);
 
   const querySnap = await q.get();
-  const docs: QueryDocumentSnapshot<DocumentData>[] = [];
+  const docs: UserAccount[] = [];
   querySnap.forEach((doc) => docs.push(doc.data()));
 
   return docs;
