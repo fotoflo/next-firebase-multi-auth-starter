@@ -11,7 +11,7 @@ import {
 } from "lib/firebase-web";
 import type { GetServerSideProps, NextPage } from "next";
 
-import { Session } from "next-auth";
+import { Session, User } from "next-auth";
 import { ServersideSessionHandler } from "lib/middleware";
 
 import { useRouter } from "next/router";
@@ -29,6 +29,8 @@ import { Container } from "react-bootstrap";
 
 import { Theme } from "types/themes";
 
+import { UserAccount } from "lib/firebase-server";
+
 const Dashboard: NextPage<{ data: Session & { id: string } }> = ({
   data: session,
   theme,
@@ -43,12 +45,16 @@ const Dashboard: NextPage<{ data: Session & { id: string } }> = ({
 
   useEffect(() => {
     const signInFirestore = async () => {
-      const result = await signInFirebase();
+      await signInFirebase();
     };
+
     signInFirestore();
   }, []);
 
-  const email = useMemo(() => session?.user?.email ?? "", [session]);
+  const email: string = useMemo(() => session?.user?.email ?? "", [session]);
+  const providers: string[] = useMemo(() => {
+    return session?.externalAccounts?.map((token) => token.provider);
+  }, [session]);
 
   return (
     <Container>
@@ -56,12 +62,16 @@ const Dashboard: NextPage<{ data: Session & { id: string } }> = ({
 
       <NavBar theme={theme} themeToggler={themeToggler} session={session} />
       <section>
-        <GithubLoginButton />
-        <GoogleLoginButton prompt="Login with Gmail" provider="gmail" />
+        {!providers.find((p) => p == "github") && <GithubLoginButton />}
+        {!providers.find((p) => p == "gmail") && (
+          <GoogleLoginButton prompt="Login with Gmail" provider="gmail" />
+        )}
+
         {session?.user && (
           <>
             <header className="header"></header>
             <PrettyPrintJson data={session} />
+            {/* <PrettyPrintJson data={githubToken} /> */}
 
             <FirebaseDebugButton email={email} />
 

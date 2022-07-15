@@ -143,7 +143,7 @@ export async function removeExpiredSessions(
   );
 }
 
-export async function getAllTokens(userId: string): Promise<UserAccount[]> {
+export async function getAllAccounts(userId: string): Promise<UserAccount[]> {
   const q = db
     .collection(`${ADAPTER_COLLECTION_NAME}/auth_store/account`)
     .where("userId", "==", userId);
