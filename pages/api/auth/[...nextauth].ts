@@ -4,6 +4,7 @@ import GithubProvider from "next-auth/providers/github";
 import GmailProvider from "next-auth-custom/GmailProvider";
 import FirebaseAdapter from "next-auth-custom/firebase-adapter";
 import { db } from "lib/firebase-server";
+import { getAllTokens } from "lib/firebase-server";
 
 // console.log({
 //   clientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID,
@@ -28,6 +29,7 @@ export default NextAuth({
   callbacks: {
     session: async (session) => {
       session.id = session.user.id;
+      session.externalTokens = await getAllTokens(session.user.id);
       return Promise.resolve(session);
     },
   },

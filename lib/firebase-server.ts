@@ -90,21 +90,24 @@ export function createFirebaseCustomTokenHandler({
   method?: string;
   additionalClaims?: (session: Session) => any;
 }) {
+  // returns a function handler
   return async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== method) return res.status(403).json(false);
-    const session = (await getSession({ req })) as Session;
 
+    const session = (await getSession({ req })) as Session;
     if (!session) return res.status(403).json(false);
+
+    // if there is a session, get the session token with the user
     const sessionToken = getSessionToken(req);
     const { user } = session as unknown as {
       user: NonNullable<Session["user"]>;
     };
     const email = user.email as string;
-
     let token = await getCustomToken(sessionToken);
+
     if (token) return res.json(token);
 
-    const userId = user.id as string;
+    // if there is no token, create one.
 
     token = await admin
       .auth()
