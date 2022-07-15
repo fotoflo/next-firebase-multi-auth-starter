@@ -42,6 +42,16 @@ export type CustomToken = {
   expires: string; // date
 };
 
+export type UserAccount = {
+  access_token: string;
+  provider: "google" | "github" | "gmail";
+  scope: string;
+  token_type: "bearer" | "Bearer";
+  type: "oauth";
+  expires_at?: number;
+  userId: string;
+};
+
 export async function getCustomToken(sessionToken: string) {
   const tokenDocRef = db
     .collection(`${ADAPTER_COLLECTION_NAME}/auth_store/customToken`)
@@ -130,17 +140,14 @@ export async function removeExpiredSessions(
   );
 }
 
-export async function getExternalTokens(userId) {
-  const citiesRef = db.collection("cities");
+export async function getAllTokens(userId: string): Promise<UserAccount[]> {
+  const q = db
+    .collection(`${ADAPTER_COLLECTION_NAME}/auth_store/account`)
+    .where("userId", "==", userId);
 
-  await citiesRef.doc("SF").set({
-    name: "San Francisco",
-    state: "CA",
-    country: "USA",
-    capital: false,
-    population: 860000,
-    regions: ["west_coast", "norcal"],
-  });
+  const querySnap = await q.get();
+  const docs: UserAccount[] = [];
+  querySnap.forEach((doc) => docs.push(doc.data()));
 
-  return [];
+  return docs;
 }
